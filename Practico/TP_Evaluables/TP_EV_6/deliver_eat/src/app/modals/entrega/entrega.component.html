@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-menu-button (click)="modalController.dismiss(null)">X</ion-menu-button>
+        </ion-buttons>
+        <ion-title class="title">Lugar de entrega</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="form">
+        <ion-item>
+            <ion-label position="floating">Calle</ion-label>
+            <ion-input formControlName="calle"></ion-input>
+        </ion-item>
+        <div class="invalid-feedback" *ngIf="form.get('calle').invalid && form.get('calle').dirty">
+            El campo es inválido
+        </div>
+        <ion-item>
+            <ion-label position="floating">Número</ion-label>
+            <ion-input formControlName="numero" type="number"></ion-input>
+        </ion-item>
+        <div class="invalid-feedback" *ngIf="form.get('numero').invalid && form.get('numero').dirty">
+            El campo es inválido
+        </div>
+        <ion-item>
+            <ion-label position="floating">Ciudad</ion-label>
+            <ion-select formControlName="ciudad" okText="Aceptar" cancelText="Cancel">
+                <ion-select-option *ngFor="let c of ciudades" value="{{c}}">{{c}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div class="invalid-feedback" *ngIf="form.get('ciudad').invalid && form.get('ciudad').dirty">
+            El campo es inválido
+        </div>
+        <ion-item>
+            <ion-label position="floating">Referencia (opcional)</ion-label>
+            <ion-textarea formControlName="referencia"></ion-textarea>
+        </ion-item>
+    </form>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-button expand="full" fill="clear" color="primary" (click)="close()">Confirmar</ion-button>
+    </ion-toolbar>
+</ion-footer>
